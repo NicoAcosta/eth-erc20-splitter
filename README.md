@@ -1,1 +1,1 @@
-# eth-splitter
+# ETH Splitter
