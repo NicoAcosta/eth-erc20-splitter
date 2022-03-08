@@ -2,21 +2,21 @@
 pragma solidity ^0.8.0;
 
 contract Splitter {
-    event Received(address, uint256);
+    event Received(address from, uint256 amount);
 
     address private immutable _addr1;
     address private immutable _addr2;
 
-    uint256 private immutable _percentage1;
+    uint256 private immutable _addr1Percentage;
 
     constructor(
         address addr1_,
         address addr2_,
-        uint256 percentage1_
+        uint256 addr1Percentage_
     ) {
         _addr1 = addr1_;
         _addr2 = addr2_;
-        _percentage1 = percentage1_;
+        _addr1Percentage = addr1Percentage_;
     }
 
     receive() external payable {
@@ -32,7 +32,9 @@ contract Splitter {
             "Caller is not authorized"
         );
 
-        payable(_addr1).transfer((_balance * _percentage1) / 100);
-        payable(_addr2).transfer((_balance * (100 - _percentage1)) / 100);
+        uint256 _amount1 = ((_balance * _addr1Percentage) / 100);
+
+        payable(_addr1).transfer(_amount1);
+        payable(_addr2).transfer(_balance - _amount1);
     }
 }
