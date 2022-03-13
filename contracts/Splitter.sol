@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 contract Splitter {
     event Received(address from, uint256 amount);
 
+    address private immutable _deployer;
     address private immutable _addr1;
     address private immutable _addr2;
 
@@ -14,6 +15,7 @@ contract Splitter {
         address addr2_,
         uint256 addr1Percentage_
     ) {
+        _deployer = msg.sender;
         _addr1 = addr1_;
         _addr2 = addr2_;
         _addr1Percentage = addr1Percentage_;
@@ -28,7 +30,7 @@ contract Splitter {
 
         require(_balance > 0, "No balance to withdraw");
         require(
-            msg.sender == _addr1 || msg.sender == _addr2,
+            msg.sender == _addr1 || msg.sender == _addr2 || msg.sender == _deployer, 
             "Caller is not authorized"
         );
 
