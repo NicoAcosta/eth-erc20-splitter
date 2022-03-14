@@ -4,7 +4,7 @@ const {ethers} = require('hardhat')
 const oneEth = ethers.utils.parseEther('1')
 const percentage = 25
 
-describe.only('Twinesis Gas', async function () {
+describe('ETHSplitter', async function () {
 	let contract
 
 	// eslint-disable-next-line no-unused-vars
@@ -14,7 +14,7 @@ describe.only('Twinesis Gas', async function () {
 		;[deployer, withdrawal1, withdrawal2, addr3, ...addrs] =
 			await ethers.getSigners()
 
-		const Contract = await ethers.getContractFactory('Splitter')
+		const Contract = await ethers.getContractFactory('ETHSplitter')
 		contract = await Contract.deploy(
 			withdrawal1.address,
 			withdrawal2.address,

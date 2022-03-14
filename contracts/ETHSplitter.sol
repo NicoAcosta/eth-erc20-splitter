@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Splitter is Ownable {
+contract ETHSplitter is Ownable {
     event Received(address from, uint256 amount);
 
     address private immutable _addr1;
