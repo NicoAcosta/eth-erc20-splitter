@@ -17,6 +17,10 @@ module.exports = {
 		rinkeby: {
 			url: process.env.RINKEBY_NODE_URL,
 			accounts: [process.env.TESTNET_DEPLOYER_PRIVATE_KEY]
+		},
+		mainnet: {
+			url: process.env.MAINNET_NODE_URL,
+			accounts: [process.env.MAINNET_DEPLOYER_PRIVATE_KEY]
 		}
 	},
 	gasReporter: {

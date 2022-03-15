@@ -7,7 +7,8 @@ async function main() {
 	const contract = await Contract.deploy(
 		process.env.MAINNET_WITHDRAWAL_1,
 		process.env.MAINNET_WITHDRAWAL_2,
-		25
+		25,
+		{gasPrice: 16000000000}
 	)
 
 	const tx = contract.deployTransaction
