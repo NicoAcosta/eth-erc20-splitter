@@ -5,6 +5,8 @@ require('@nomiclabs/hardhat-waffle')
 require('hardhat-gas-reporter')
 require('solidity-coverage')
 
+require('hardhat-abi-exporter')
+
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
@@ -24,10 +26,18 @@ module.exports = {
 		}
 	},
 	gasReporter: {
-		enabled: process.env.REPORT_GAS !== undefined,
+		enabled: true,
 		currency: 'USD'
 	},
 	etherscan: {
 		apiKey: process.env.ETHERSCAN_API_KEY
+	},
+	abiExporter: {
+		path: './abi',
+		runOnCompile: true,
+		flat: true,
+		only: ['Splitter', 'IERC20', 'MockToken'],
+		spacing: 2,
+		pretty: true
 	}
 }
