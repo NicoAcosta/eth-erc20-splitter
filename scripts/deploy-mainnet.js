@@ -1,14 +1,17 @@
 const hre = require('hardhat')
 
+const percentage = 15
+const gasPrice = 16000000000
+
 async function main() {
 	let deployer, addrs
 
-	const Contract = await hre.ethers.getContractFactory('ETHSplitter')
+	const Contract = await hre.ethers.getContractFactory('Splitter')
 	const contract = await Contract.deploy(
 		process.env.MAINNET_WITHDRAWAL_1,
 		process.env.MAINNET_WITHDRAWAL_2,
-		25,
-		{gasPrice: 16000000000}
+		percentage,
+		{gasPrice: gasPrice}
 	)
 
 	const tx = contract.deployTransaction
@@ -17,7 +20,7 @@ async function main() {
 	await contract.deployed()
 	;[deployer, ...addrs] = await ethers.getSigners()
 
-	console.log('ETHSplitter deployed to:', contract.address)
+	console.log('Splitter deployed to:', contract.address)
 	console.log('Deployed by:', deployer.address)
 }
 
