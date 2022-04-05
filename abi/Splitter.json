@@ -1,7 +1,7 @@
 [
   "constructor(address,address,uint256)",
+  "event ETHReceived(address,uint256)",
   "event OwnershipTransferred(address indexed,address indexed)",
-  "event Received(address,uint256)",
   "function owner() view returns (address)",
   "function renounceOwnership()",
   "function transferOwnership(address)",
